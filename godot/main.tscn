@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv718bhnji1vd"]
+
+[ext_resource type="Script" uid="uid://bdkukmuhg27ao" path="res://auv.gd" id="1_ig7tw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xm2m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DockingStation" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DockingStation"]
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DockingStation"]
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="AUV" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dock_target")]
+transform = Transform3D(0.9937679, 0, -0.11146893, 0, 1, 0, 0.11146893, 0, 0.9937679, 10, 2, 10)
+script = ExtResource("1_ig7tw")
+dock_target = NodePath("../DockingStation")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AUV"]
+mesh = SubResource("CapsuleMesh_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AUV"]
+shape = SubResource("CapsuleShape3D_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.048849758, 0.49940306, -0.8649915, 0, 0.8660254, 0.5, 0.9988061, -0.024424879, 0.04230513, -10.462, -0.387, 6.618)
+current = true
+fov = 106.482315
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
